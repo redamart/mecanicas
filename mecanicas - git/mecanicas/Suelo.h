@@ -6,9 +6,9 @@ private:
 	Rectangle a;
 	Rectangle b;
 public:
-	Csuelo(){
-		a = Rectangle(60, 300, 50, 20);
-		b = Rectangle(90, 100, 30, 80);
+	Csuelo(Rectangle rect){
+		a = rect;
+		
 		
 	}
 	void dibujar(Graphics^g) {

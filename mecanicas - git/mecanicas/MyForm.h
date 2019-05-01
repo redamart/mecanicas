@@ -70,6 +70,7 @@ namespace mecanicas {
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::mantener);
+			this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyUp);
 			this->ResumeLayout(false);
 
 		}
@@ -92,7 +93,18 @@ namespace mecanicas {
 		case Keys::Left:
 			controladora->setDir(Direcciones::izquierda);
 			break;
+		case Keys::Space:
+			controladora->salto();
 		default:
+			
+			break;
+		}
+	}
+	private: System::Void MyForm_KeyUp(System::Object^ sender, System::Windows::Forms::KeyEventArgs^ e) {
+		switch (e->KeyCode)
+		{
+		default:
+			controladora->setDir(Direcciones::ninguna);
 			break;
 		}
 	}

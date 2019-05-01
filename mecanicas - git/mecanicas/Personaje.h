@@ -1,5 +1,5 @@
 #pragma once
-enum Direcciones{arriba,abajo,derecha,izquierda};
+enum Direcciones{arriba,abajo,derecha,izquierda,ninguna};
 using namespace System::Drawing;
 class Cjugador {
 	int x;
@@ -7,6 +7,7 @@ class Cjugador {
 	int vel;
 	bool suelo;
 	int gravedad;
+	bool saltando;
 	Rectangle jug;
 	Direcciones direccion;
 
@@ -14,11 +15,12 @@ public:
 	Cjugador() {
 		this->x = 80;
 		this->y = 90;
-		vel = 10;
+		vel = 20;
 		suelo = false;
-		gravedad = 5;
+		gravedad = 6;
 		jug = Rectangle(x, y, 50, 50);
 		direccion = Direcciones::arriba;
+		saltando = false;
 	}
 
 	void setDir(Direcciones dir) {
@@ -39,8 +41,17 @@ public:
 		suelo = false;
 	}
 	void animar() {
+		if (saltando && vel > 0) {
+			y = y - vel;
+			vel--;
+		}
+		else {
+			vel = 20;
+			saltando = false;
+		}
+		
 		if (suelo) {
-
+			
 		}
 		else {
 			y = y + gravedad;
@@ -48,15 +59,21 @@ public:
 		switch (direccion)
 		{
 		case Direcciones::derecha:
-			x++;
+			x = x + 2;
 			break;
 		case Direcciones::izquierda:
-			x--;
+			x= x-2;
 			break;
 		default:
+			
 			break;
 		}
 		jug = Rectangle(x, y, 50, 50);
+	}
+	void salto() {
+		if (suelo) {
+			saltando = true;
+		}
 	}
 	void mover(char a) {
 		switch (a)
@@ -71,16 +88,6 @@ public:
 		default:
 			break;
 		}
-	}
-	void salto() {
-
-		if (suelo && vel > 0) {
-			y = y - vel;
-			vel--;
-		}
-		else vel = 10;
-
-
 	}
 
 
