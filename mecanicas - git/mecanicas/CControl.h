@@ -23,6 +23,7 @@ public:
 		fondo->pintarM(g, bmpsuelo, bmppuas, bmppuas2, bmpcañones, bmptrampolin);
 		jugador->dibujarjugador(g);
 		mapa->dibujar(g);
+		enemigo->dibujarjugador(g);
 	}
 	void interseccion(){
 		for (int i=0; i < 3; i++) {
