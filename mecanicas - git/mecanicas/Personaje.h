@@ -19,7 +19,7 @@ public:
 		suelo = false;
 		gravedad = 6;
 		jug = Rectangle(x, y, 50, 50);
-		direccion = Direcciones::arriba;
+		direccion = Direcciones::ninguna;
 		saltando = false;
 	}
 
@@ -50,24 +50,11 @@ public:
 			saltando = false;
 		}
 		
-		if (suelo) {
-			
-		}
-		else {
+		if (suelo == false && saltando == false) {
+		
 			y = y + gravedad;
 		}
-		switch (direccion)
-		{
-		case Direcciones::derecha:
-			x = x + 2;
-			break;
-		case Direcciones::izquierda:
-			x= x-2;
-			break;
-		default:
-			
-			break;
-		}
+		
 		jug = Rectangle(x, y, 50, 50);
 	}
 	void salto() {
@@ -75,17 +62,23 @@ public:
 			saltando = true;
 		}
 	}
-	void mover(char a) {
-		switch (a)
+	void mover( ) {
+		switch (direccion)
 		{
-		case 'a': x--;
+		case Direcciones::derecha:
+			x = x + 2;
 			break;
-		case  'w':
+		case Direcciones::izquierda:
+			x = x - 2;
 			break;
-
-		case 'd': x++;
+		case Direcciones::arriba:
+			y = y - 2;
+			break;
+		case Direcciones::abajo:
+			y = y + 2;
 			break;
 		default:
+
 			break;
 		}
 	}

@@ -16,6 +16,13 @@ namespace mecanicas {
 	{
 	public:
 		Ccontroladora* controladora = new Ccontroladora();
+		Bitmap^ bmppiso = gcnew Bitmap("imagenes\\piso.png");
+		Bitmap^ bmppuas = gcnew Bitmap("imagenes\\puas1.png");
+		Bitmap^ bmpcañon = gcnew Bitmap("imagenes\\cañon.png");
+		Bitmap^ bmptrampolin = gcnew Bitmap("imagenes\\trampolin.png");
+		Bitmap^ bmpnada = gcnew Bitmap("imagenes\\escenario1.1.png");
+		Bitmap^ bmppuas2 = gcnew Bitmap("imagenes\\puas2.png");
+		Bitmap^ bmpjugador = gcnew Bitmap("imagenes\\caminando.png");
 		MyForm(void)
 		{
 			InitializeComponent();
@@ -70,6 +77,7 @@ namespace mecanicas {
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::mantener);
+			this->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::MyForm_KeyPress);
 			this->KeyUp += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyUp);
 			this->ResumeLayout(false);
 
@@ -79,7 +87,8 @@ namespace mecanicas {
 		Graphics^ g = this->CreateGraphics();
 		BufferedGraphicsContext^ espacio = BufferedGraphicsManager::Current;
 		BufferedGraphics^ buffer = espacio->Allocate(g, this->ClientRectangle);
-		controladora->dibujar(buffer->Graphics);
+		controladora->interseccion();
+		controladora->dibujar(buffer->Graphics,bmpnada, bmppiso, bmppuas, bmppuas2, bmpcañon, bmptrampolin, bmpjugador);
 		controladora->animar();
 		buffer->Render(g);
 		delete buffer, espacio, g;
@@ -93,8 +102,7 @@ namespace mecanicas {
 		case Keys::Left:
 			controladora->setDir(Direcciones::izquierda);
 			break;
-		case Keys::Space:
-			controladora->salto();
+		
 		default:
 			
 			break;
@@ -106,6 +114,13 @@ namespace mecanicas {
 		default:
 			controladora->setDir(Direcciones::ninguna);
 			break;
+		}
+	}
+	private: System::Void MyForm_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (e->KeyChar == 'l') {
+
+			controladora->salto();
+
 		}
 	}
 	};

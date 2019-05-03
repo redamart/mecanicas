@@ -135,6 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CControl.h" />
+    <ClInclude Include="CFondo.h" />
+    <ClInclude Include="CSuelos.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
