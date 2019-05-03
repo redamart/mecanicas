@@ -3,6 +3,7 @@
 #include "Suelo.h"
 #include "CFondo.h"
 #include "CSuelos.h"
+#include "Cenemigo.h"
 using namespace System::Drawing;
 class Ccontroladora
 {
@@ -13,6 +14,7 @@ public:
 		jugador = new Cjugador();
 		suelo = false;
 		fondo = new CFondo();
+		enemigo = new Cenemigo();
 		
 	}
 	~Ccontroladora() {}
@@ -38,8 +40,9 @@ public:
 		suelo = false;
 	}
 	void animar() {
-		
+		enemigo->animar();
 		jugador->animar();
+		enemigo->mover();
 		jugador->mover();
 		
 	}
@@ -57,4 +60,5 @@ private:
 	Rectangle b;
 	CMapa* mapa;
 	CFondo* fondo;
+	Cenemigo* enemigo;
 };

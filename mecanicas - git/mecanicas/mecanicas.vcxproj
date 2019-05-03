@@ -135,7 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CControl.h" />
+    <ClInclude Include="CEnemigo.h" />
     <ClInclude Include="CFondo.h" />
+    <ClInclude Include="CListaSE.h" />
     <ClInclude Include="CSuelos.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="MyForm.h">

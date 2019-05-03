@@ -102,7 +102,8 @@ namespace mecanicas {
 		case Keys::Left:
 			controladora->setDir(Direcciones::izquierda);
 			break;
-		
+		case Keys::Space:
+			controladora->salto();
 		default:
 			
 			break;
